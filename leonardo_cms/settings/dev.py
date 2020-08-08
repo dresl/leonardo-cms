@@ -4,7 +4,7 @@ from .base import *
 DEBUG = True
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'lv8pmf&!729xrjad0ls+!7hm9(oip*s!f+*+aw5+v9_*low9jr'
+SECRET_KEY = 'h49*dh__40xo=@1a5-sh@wb!d(r#wof1&_!hy4=2r=f_^liten'
 
 # SECURITY WARNING: define the correct hosts in production!
 ALLOWED_HOSTS = ['*'] 

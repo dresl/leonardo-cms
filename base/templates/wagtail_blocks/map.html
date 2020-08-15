@@ -1,20 +1,18 @@
-{% load wagtailcore_tags %}
-{% load static %}
-{% load wagtail_html_support %}
+{% extends 'wagtail_blocks/base/_block.html' %}
 
+{% load i18n static %}
+{% load wagtailcore_tags wagtail_html_support %}
+
+{% block content %}
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"
       integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
       crossorigin=""/>
-
 <!-- Make sure you put this AFTER Leaflet's CSS -->
 <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"
         integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg=="
         crossorigin=""></script>
 
-<div class="col-md-12">
-    <div id="{{ block_id }}" style="height: 400px; width: 100%; margin-bottom: 20px;"></div>
-</div>
-
+<div id="{{ block_id }}" style="height: 400px; width: 100%; margin-bottom: 20px;"></div>
 
 <script>
     {
@@ -43,3 +41,5 @@
     }
 
 </script>
+
+{% endblock %}

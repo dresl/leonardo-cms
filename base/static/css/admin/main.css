@@ -1,16 +1,50 @@
 
-/* dimensions layout */
+/* global input fields */
 
-.dimension-wrapper.small_width {
-  padding-right: 10px;
+.c-sf-block .field {
+  padding-left: 7px;
+  padding-right: 7px;
 }
 
-.dimension-wrapper.large_width {
-  padding-left: 10px;
+.c-sf-container .field+.field {
+  padding-top: 8px!important;
 }
 
-.dimension-wrapper {
+.c-sf-container .field {
+  padding-top: 8px;
+}
+
+.c-sf-block__content-inner {
+  padding: 16px 14px!important;
+}
+
+.width-50 {
   width: 50%;
+  display: list-item;
+  float: left;
+}
+
+.width-33 {
+  width: 33.333%;
+  display: list-item;
+  float: left;
+}
+
+.width-25 {
+  width: 25%;
+  display: list-item;
+  float: left;
+}
+
+.common-block-fields {
+  display: flex;
+  width: 100%;
+}
+
+/* common block layout */
+
+.common-block-wrapper {
+  width: 100%;
   display: list-item;
   float: left;
 }
@@ -35,13 +69,7 @@
 }
 
 @media screen and (max-width: 800px) {
-  .dimension-wrapper {
+  .common-block-wrapper {
     width: 100%;
-  }
-  .dimension-wrapper.small_width {
-    padding-right: 0px;
-  }
-  .dimension-wrapper.large_width {
-    padding-left: 0px;
   }
 }

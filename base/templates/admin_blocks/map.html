@@ -1,0 +1,54 @@
+{% extends 'admin_blocks/base_block.html' %}
+
+{% load wagtailcore_tags leonardo_base_tags %}
+
+
+{% block extra_fields %}
+    
+    <div id="{{ prefix }}" style="width: 100%; height: 400px; z-index:0; margin-top: 20px; display: inline-block"></div>
+
+    <script>
+    {
+        let marker_title = $('#{{ prefix }}-marker_title')[0]
+        let current_zoom_level = $('#{{ prefix }}-zoom_level')[0]
+        let center_x = $('#{{ prefix }}-location_x')[0]
+        let center_y = $('#{{ prefix }}-location_y')[0]
+        let marker_x = $('#{{ prefix }}-marker_x')[0]
+        let marker_y = $('#{{ prefix }}-marker_y')[0]
+
+        let mymap = L.map('{{ prefix }}').setView([center_x.value, center_y.value], current_zoom_level.value)
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 18,
+            attribution:
+                '<a href="https://github.com/ibrahimawadhamid/wagtail_blocks">Wagtail Blocks</a> ' +
+                'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ',
+            id: 'mapbox.streets'
+        }).addTo(mymap)
+
+        let myMarker = L.marker([marker_x.value, marker_y.value], {draggable: true}).addTo(mymap)
+            .bindPopup("" +
+                "<b>" + marker_title.value + "</b>" +
+                "<br /> 'Description will be here'").openPopup()
+
+        function onMapZoom(e) {
+            current_zoom_level.value = mymap.getZoom()
+        }
+
+        function onMapMove(e) {
+            center_x.value = mymap.getCenter().lat
+            center_y.value = mymap.getCenter().lng
+        }
+
+        function onMarkerMove(e) {
+            marker_x.value = e.latlng.lat
+            marker_y.value = e.latlng.lng
+        }
+
+        mymap.on('zoomend', onMapZoom)
+        mymap.on('moveend', onMapMove)
+        myMarker.on('move', onMarkerMove)
+    }
+
+</script>
+{% endblock %}

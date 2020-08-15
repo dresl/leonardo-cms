@@ -1,0 +1,49 @@
+{% load leonardo_base_tags %}
+
+<div class="{{ classname }} hovno">
+    {% if help_text %}
+        <span>
+            <div class="help">
+                <span class="icon-help-inverse" aria-hidden="true"></span>
+                {{ help_text }}
+            </div>
+        </span>
+    {% endif %}
+
+    <div class="common-block-fields">
+    {% for child in children.values|get_common_fields %}
+        <div class="field {% if child.block.required %}required{% endif %} common-block-wrapper">
+            {% if child.block.label %}
+                <label class="field__label" {% if child.id_for_label %}for="{{ child.id_for_label }}"{% endif %}>{{ child.block.label }}</label>
+            {% endif %}
+            {{ child.render_form }}
+            {% if child.block.field.widget.input_type == "range" %}
+                <span class="min-slider-value">{{ child.block.field.widget.attrs.min }}</span>
+                <span class="active-slider-value" id="{{ child.id_for_label }}-output"></span>
+                <span class="max-slider-value">{{ child.block.field.widget.attrs.max }}</span>
+                <script>
+                    $("#{{ child.id_for_label }}-output").text(document.querySelector("#{{ child.id_for_label }}").value)
+                    $("#{{ child.id_for_label }}").on("input", () => {
+                        $("#{{ child.id_for_label }}-output").text(document.querySelector("#{{ child.id_for_label }}").value)
+                    })
+                </script>
+            {% endif %}
+        </div>
+    {% endfor %}
+    </div>
+
+    <hr/>
+
+    {% block other_fields %}
+    {% for child in children.values|get_extra_fields %}
+        <div class="field {% if child.block.required %}required{% endif %}">
+            {% if child.block.label %}
+                <label class="field__label" {% if child.id_for_label %}for="{{ child.id_for_label }}"{% endif %}>{{ child.block.label }}</label>
+            {% endif %}
+            {{ child.render_form }}
+        </div>
+    {% endfor %}
+    {% endblock %}
+
+    {% block extra_fields %}{% endblock %}
+</div>

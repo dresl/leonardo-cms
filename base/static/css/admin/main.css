@@ -33,3 +33,15 @@
   float: right;
   margin-top: -24px;
 }
+
+@media screen and (max-width: 800px) {
+  .dimension-wrapper {
+    width: 100%;
+  }
+  .dimension-wrapper.small_width {
+    padding-right: 0px;
+  }
+  .dimension-wrapper.large_width {
+    padding-left: 0px;
+  }
+}

@@ -16,8 +16,8 @@ class RichTextBlock(CommonBlockMixin):
 
     class Meta:
         icon = 'pilcrow'
-        template = 'wagtail_blocks/base_block.html'
-        form_template = 'admin_blocks/base_block.html'
+        template = 'page/blocks/simple_block.html'
+        form_template = 'admin/blocks/simple_block.html'
 
 
 class MapBlock(CommonBlockMixin):
@@ -39,5 +39,5 @@ class MapBlock(CommonBlockMixin):
 
     class Meta:
         icon = "fa-globe"
-        template = 'wagtail_blocks/map.html'
-        form_template = 'admin_blocks/map.html'
+        template = 'page/blocks/map_block.html'
+        form_template = 'admin/blocks/map_block.html'

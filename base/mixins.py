@@ -10,7 +10,6 @@ from wagtail.core import blocks
 
 class IntegerRangeBlock(blocks.FieldBlock):
     def __init__(self, max_value='12', min_value='1', default_value='12', required=True, help_text=None, **kwargs):
-        print(kwargs)
         self.field = forms.IntegerField(widget=NumberInput(attrs={
             'type':'range',
             'step': '1',

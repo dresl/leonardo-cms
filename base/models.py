@@ -4,7 +4,6 @@ from modelcluster.fields import ParentalKey
 from wagtail_blocks.blocks import HeaderBlock, ListBlock, ImageTextOverlayBlock, CroppedImagesWithTextBlock, \
     ListWithImagesBlock, ThumbnailGalleryBlock, ChartBlock, ImageSliderBlock
 
-from wagtail.core import blocks
 from wagtailmenus.models import MenuPage
 from wagtailmenus.panels import menupage_panel
 
@@ -18,6 +17,8 @@ from wagtail.admin.edit_handlers import (
     TabbedInterface,
     ObjectList
 )
+from wagtail.core import blocks
+from wagtail.search import index
 from wagtail.core.models import Page, Orderable
 from wagtail.core.fields import RichTextField, StreamField
 from wagtail.images.edit_handlers import ImageChooserPanel
@@ -28,6 +29,8 @@ from .blocks import RichTextBlock, MapBlock
 
 
 class StandardPage(Page):
+
+    template = 'page/standard_page.html'
 
     # fields
 
@@ -54,7 +57,9 @@ class StandardPage(Page):
         related_name='pages'
     )
 
-    display_page_title = models.BooleanField(blank=True, null=True, default=True, help_text='Display title on page detail')
+    full_width = models.BooleanField(default=False, help_text='Fullscreen page layout')
+
+    display_page_title = models.BooleanField(default=True, help_text='Display title on page detail')
 
     # panels
 
@@ -67,12 +72,20 @@ class StandardPage(Page):
     settings_panels = [
         MultiFieldPanel([
             ImageChooserPanel('featured_image'),
+            FieldPanel('full_width'),
             FieldPanel('display_page_title')
         ], heading='Common')
     ] + Page.settings_panels
 
     sidebar_content_panels = [
         StreamFieldPanel('sidebar')
+    ]
+
+    # search fields
+
+    search_fields = Page.search_fields + [
+        index.SearchField('search_description', partial_match=True),
+        index.SearchField('body', partial_match=True)
     ]
 
     # tabs

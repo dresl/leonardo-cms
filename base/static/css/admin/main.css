@@ -69,7 +69,7 @@
 }
 
 @media screen and (max-width: 800px) {
-  .common-block-wrapper {
-    width: 100%;
+  .common-block-fields {
+    display: block;
   }
 }

@@ -15,13 +15,13 @@
                 <label class="field__label" {% if child.id_for_label %}for="{{ child.id_for_label }}"{% endif %}>{{ child.block.label }}</label>
             {% endif %}
             {{ child.render_form }}
-            {% if child.block.name == 'small_width' or child.block.name == 'large_width' %}
+            {% if child.block.field.widget.input_type == "range" %}
             <span class="min-slider-value">{{ child.block.field.widget.attrs.min }}</span>
             <span class="active-slider-value" id="{{ child.id_for_label }}-output"></span>
             <span class="max-slider-value">{{ child.block.field.widget.attrs.max }}</span>
             {% endif %}
         </div>
-        {% if child.block.name == 'small_width' or child.block.name == 'large_width' %}
+        {% if child.block.field.widget.input_type == "range" %}
         <script>
             $("#{{ child.id_for_label }}-output").text(document.querySelector("#{{ child.id_for_label }}").value)
             $("#{{ child.id_for_label }}").on("input", () => {

@@ -19,11 +19,12 @@ from wagtail.core.models import Page, Orderable
 from wagtail.core.fields import RichTextField, StreamField
 from wagtail.images.edit_handlers import ImageChooserPanel
 
+from .blocks import RichTextBlock
+
 
 class StandardPage(Page):
     body = StreamField([
-        ('header', HeaderBlock()),
-        ('list', ListBlock()),
+        ('text', RichTextBlock()),
         ('image_text_overlay', ImageTextOverlayBlock()),
         ('cropped_images_with_text', CroppedImagesWithTextBlock()),
         ('list_with_images', ListWithImagesBlock()),

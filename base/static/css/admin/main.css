@@ -1,0 +1,35 @@
+
+/* dimensions layout */
+
+.dimension-wrapper.small_width {
+  padding-right: 10px;
+}
+
+.dimension-wrapper.large_width {
+  padding-left: 10px;
+}
+
+.dimension-wrapper {
+  width: 50%;
+  display: list-item;
+  float: left;
+}
+
+.active-slider-value {
+  margin: 0 auto;
+  display: table;
+  background: #fafafa;
+  padding: 4px 11px;
+  border: 1px solid #dedede;
+  margin-top: -6px;
+  border-radius: 5px;
+}
+
+.min-slider-value {
+  float: left;
+}
+
+.max-slider-value {
+  float: right;
+  margin-top: -24px;
+}

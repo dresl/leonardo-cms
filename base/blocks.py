@@ -1,11 +1,4 @@
 from django import forms
-from django.forms.widgets import NumberInput
-
-from wagtail_blocks.blocks import ImageTextOverlayBlock, CroppedImagesWithTextBlock, \
-    ListWithImagesBlock, ThumbnailGalleryBlock, ChartBlock, ImageSliderBlock
-from wagtail_blocks import blocks as wagtail_blocks
-
-from wagtail.images.blocks import ImageChooserBlock
 from wagtail.core import blocks
 
 from .mixins import CommonBlockMixin
@@ -22,9 +15,11 @@ class RichTextBlock(CommonBlockMixin):
 
 class MapBlock(CommonBlockMixin):
     marker_title = blocks.CharBlock(max_length=120,
-                                    default="Marker Title 'This will be updated after you save changes.'", classname='half-size-wrapper')
+                                    default="Marker Title 'This will be updated after you save changes.'",
+                                    classname='half-size-wrapper')
     marker_description = blocks.RichTextBlock()
-    zoom_level = blocks.IntegerBlock(min_value=0, max_value=18, default='2', required=False)
+    zoom_level = blocks.IntegerBlock(
+        min_value=0, max_value=18, default='2', required=False)
     location_x = blocks.FloatBlock(default='35.0', required=False)
     location_y = blocks.FloatBlock(default='0.16', required=False)
     marker_x = blocks.FloatBlock(default='51.5', required=False)

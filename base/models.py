@@ -1,31 +1,15 @@
 from django.db import models
-
-from modelcluster.fields import ParentalKey
-from wagtail_blocks.blocks import HeaderBlock, ListBlock, ImageTextOverlayBlock, CroppedImagesWithTextBlock, \
-    ListWithImagesBlock, ThumbnailGalleryBlock, ChartBlock, ImageSliderBlock
-
-from wagtailmenus.models import MenuPage
-from wagtailmenus.panels import menupage_panel
-
 from wagtail.admin.edit_handlers import (
-    FieldPanel,
-    MultiFieldPanel,
-    InlinePanel,
-    StreamFieldPanel,
-    PageChooserPanel,
-    FieldRowPanel,
-    TabbedInterface,
-    ObjectList
-)
-from wagtail.core import blocks
-from wagtail.search import index
-from wagtail.core.models import Page, Orderable
-from wagtail.core.fields import RichTextField, StreamField
+    FieldPanel, ObjectList, StreamFieldPanel, TabbedInterface, MultiFieldPanel)
+from wagtail.core.models import Page
+from wagtail.core.fields import StreamField
 from wagtail.images.edit_handlers import ImageChooserPanel
-from wagtail.images.blocks import ImageChooserBlock
-from wagtail.images.fields import ImageField
+from wagtail.search import index
+from wagtail_blocks.blocks import (ChartBlock, CroppedImagesWithTextBlock,
+                                   ImageSliderBlock, ImageTextOverlayBlock,
+                                   ListWithImagesBlock, ThumbnailGalleryBlock)
 
-from .blocks import RichTextBlock, MapBlock
+from .blocks import MapBlock, RichTextBlock
 
 
 class StandardPage(Page):
@@ -57,9 +41,11 @@ class StandardPage(Page):
         related_name='pages'
     )
 
-    full_width = models.BooleanField(default=False, help_text='Fullscreen page layout')
+    full_width = models.BooleanField(
+        default=False, help_text='Fullscreen page layout')
 
-    display_page_title = models.BooleanField(default=True, help_text='Display title on page detail')
+    display_page_title = models.BooleanField(
+        default=True, help_text='Display title on page detail')
 
     # panels
 

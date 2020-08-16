@@ -4,6 +4,14 @@
 
 
 {% block extra_fields %}
+    {% for child in children.values|get_extra_fields %}
+        <div class="field {% if child.block.required %}required{% endif %}">
+            {% if child.block.label %}
+                <label class="field__label" {% if child.id_for_label %}for="{{ child.id_for_label }}"{% endif %}>{{ child.block.label }}</label>
+            {% endif %}
+            {{ child.render_form }}
+        </div>
+    {% endfor %}
     
     <div id="{{ prefix }}" style="width: 100%; height: 400px; z-index:0; margin-top: 20px; display: inline-block"></div>
 
@@ -21,8 +29,7 @@
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 18,
             attribution:
-                '<a href="https://github.com/ibrahimawadhamid/wagtail_blocks">Wagtail Blocks</a> ' +
-                'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ',
+                '<a href="https://www.openstreetmap.org/">OpenStreetMap</a>',
             id: 'mapbox.streets'
         }).addTo(mymap)
 

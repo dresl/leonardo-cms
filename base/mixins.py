@@ -17,9 +17,9 @@ class IntegerRangeBlock(blocks.FieldBlock):
 
 class CommonBlockMixin(blocks.StructBlock):
     small_width = IntegerRangeBlock()
-    large_width = IntegerRangeBlock()
     small_offset = IntegerRangeBlock(
         max_value='11', min_value='0', default_value='0')
+    large_width = IntegerRangeBlock()
     large_offset = IntegerRangeBlock(
         max_value='11', min_value='0', default_value='0')
     remove_padding = blocks.BooleanBlock(required=False)

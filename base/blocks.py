@@ -14,6 +14,8 @@ class RichTextBlock(CommonBlockMixin):
 
 
 class MapBlock(CommonBlockMixin):
+    map_height = blocks.IntegerBlock(
+        default=400, help_text='Height of the map in pixels')
     marker_title = blocks.CharBlock(max_length=120,
                                     default="Marker Title 'This will be updated after you save changes.'",
                                     classname='half-size-wrapper')

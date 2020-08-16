@@ -72,3 +72,17 @@
     display: block;
   }
 }
+
+/* draftail */
+
+p.Draftail-block--text-center * {
+  text-align: center;
+}
+
+p.Draftail-block--text-right * {
+  text-align: right;
+}
+
+p.Draftail-block--text-justify * {
+  text-align: justify;
+}

@@ -9,13 +9,15 @@ register = template.Library()
 
 @register.filter
 def get_fields(obj):
+    """Get python object attributes"""
     print(obj.__dict__)
     return ''
 
 
 @register.filter
 def snake_case(text):
-    return text.replace('-', '_').replace('.', '_')
+    """Coverts string to snake case. E.g. `Dummy-Text 1` wiil be `dummy_text_1`"""
+    return text.replace('-', '_').replace('.', '_').replace(' ', '_').lower()
 
 
 # admin blocks filters

@@ -17,8 +17,6 @@
 </div>
 {% endif %}
 
-{{ page.body|get_fields }}
-
 {% for block in page.body %}
     {% include_block block with block_id=block.id %}
 {% endfor %}
